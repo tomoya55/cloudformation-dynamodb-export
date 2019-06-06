@@ -3,7 +3,7 @@ import sys
 import json
 import os
 
-from cfn_parser import CFNParser
+from . import cfn_parser
 
 
 class ParameterProcessor(argparse.Action):
@@ -19,7 +19,7 @@ class ParameterProcessor(argparse.Action):
 
 def export_tables(args):
     base = os.path.dirname(os.path.abspath(args.path))
-    parser = CFNParser(args.filename, args.param)
+    parser = cfn_parser.CFNParser(args.filename, args.param)
 
     for table in parser.all_dynamodb_tables():
         file = os.path.join(base, f"schemas/{table.tableName()}.json")
