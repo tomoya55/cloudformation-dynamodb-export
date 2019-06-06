@@ -13,7 +13,7 @@ pip install cloudformation-dynamodb-export
 from the command line, you can run the command as below
 
 ```
-cloudformation-dynamodb-export <template-file>
+cfnddb_export -o output-dir <template-file>
 ```
 
 ### Options
@@ -21,7 +21,7 @@ cloudformation-dynamodb-export <template-file>
 You can pass `Parameters` with `--param` option, so that we can solve `Fn::Sub` and `Fn::Ref` instrinsic functions.
 
 ```
-cloudformation-dynamodb-export <template-file> --param StageName=prod --param AwsRegion=us-west-2
+cfnddb_export -o output-dir <template-file> --param StageName=prod --param AwsRegion=us-west-2
 ```
 
 ## License

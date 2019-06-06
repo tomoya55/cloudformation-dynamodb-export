@@ -7,7 +7,7 @@ requires = ["awscli>=1.16"]
 
 setuptools.setup(
     name="cloudformation_dynamodb_export",
-    version="0.2.0",
+    version="0.2.1",
     author="tomoya55",
     author_email="hiranotomoya@gmail.com",
     description="Export DynamoDB definition in Cloudformation template files as json",
@@ -17,7 +17,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     entry_points={
         'console_scripts': [
-            'cfn2ddb = cloudformation_dynamodb_export.cfn2ddb:export',
+            'cfnddb_export = cloudformation_dynamodb_export.cfn2ddb:export',
         ]
     },
     install_requires=requires,
