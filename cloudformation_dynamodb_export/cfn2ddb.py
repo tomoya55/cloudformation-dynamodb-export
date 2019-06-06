@@ -19,11 +19,13 @@ class ParameterProcessor(argparse.Action):
 
 
 def export_tables(args):
-    base = os.path.dirname(os.path.abspath(args.path))
+    base = os.path.abspath(args.output)
+    os.makedirs(base, exist_ok=True)
+
     parser = cfn_parser.CFNParser(args.filename, args.param)
 
     for table in parser.all_dynamodb_tables():
-        file = os.path.join(base, f"schemas/{table.tableName()}.json")
+        file = os.path.join(base, f"{table.tableName()}.json")
         with open(file, "w") as fout:
             json.dump(table.properties(), fout, ensure_ascii=False,
                       indent=4, sort_keys=True, separators=(',', ': '))
@@ -35,9 +37,10 @@ def export():
         description='Translate AWS Cloud Formation template to AWS CLI Input json')
     parser.add_argument('filename', metavar='<filename>',
                         help='The cloud formation template')
-    parser.add_argument('path', metavar='<path>',
+    parser.add_argument('-o', '--output', metavar='<path>', required=True,
                         help='Directory to export JSON files')
-    parser.add_argument("--param", action=ParameterProcessor)
+    parser.add_argument("--param", action=ParameterProcessor,
+                        default=defaultdict(lambda: ""))
     export_tables(args=parser.parse_args())
 
 
