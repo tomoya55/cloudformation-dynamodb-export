@@ -2,6 +2,7 @@ import argparse
 import sys
 import json
 import os
+from collections import defaultdict
 
 from . import cfn_parser
 
@@ -10,7 +11,7 @@ class ParameterProcessor(argparse.Action):
     def __call__(self, parser, namespace, values, option_strings=None):
         param_dict = getattr(namespace, self.dest, [])
         if param_dict is None:
-            param_dict = {}
+            param_dict = defaultdict(lambda: "")
 
         k, v = values.split("=")
         param_dict[k] = v
