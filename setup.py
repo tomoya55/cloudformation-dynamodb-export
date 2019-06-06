@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 requires = ["awscli>=1.16"]
 
 setuptools.setup(
-    name="cloudformation-dynamodb-export",
+    name="cloudformation_dynamodb_export",
     version="0.1.0",
     author="tomoya55",
     author_email="hiranotomoya@gmail.com",
@@ -17,7 +17,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     entry_points={
         'console_scripts': [
-            'cfn2ddb=cloudformation-dynamodb-export.cfn2ddb:export',
+            'cfn2ddb = cloudformation_dynamodb_export.cfn2ddb:export',
         ]
     },
     install_requires=requires,
