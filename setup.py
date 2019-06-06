@@ -3,6 +3,8 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+requires = ["awscli>=1.16"]
+
 setuptools.setup(
     name="cloudformation-dynamodb-export",
     version="0.1.0",
@@ -18,6 +20,7 @@ setuptools.setup(
             'cfn2ddb=cloudformation-dynamodb-export.cfn2ddb:export',
         ]
     },
+    install_requires=requires,
     keywords="aws cloudformation dynamodb",
     classifiers=[
         "Programming Language :: Python :: 3",
