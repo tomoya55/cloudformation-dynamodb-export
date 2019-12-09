@@ -39,8 +39,15 @@ class CFNParser:
     def __resolve_parameters(self, node):
         for key in node:
             val = node[key]
-            if isinstance(val, dict) and len(val) == 1 and next(iter(val)) == 'Fn::Sub':
-                node[key] = CfnTemplate(
-                    val['Fn::Sub']).safe_substitute(self.parameters)
-            elif isinstance(val, dict):
+            if isinstance(val, dict):
+                if len(val) == 1:
+                    nextkey = next(iter(val))
+                    if nextkey.startswith('Fn::'):
+                        if nextkey == 'Fn::Sub':
+                            node[key] = CfnTemplate(
+                                val['Fn::Sub']).safe_substitute(self.parameters)
+                        else:
+                            print(f"{nextkey} skipped")
+                            del node[key]
+
                 self.__resolve_parameters(val)
