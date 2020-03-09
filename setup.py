@@ -7,7 +7,7 @@ requires = ["awscli>=1.16"]
 
 setuptools.setup(
     name="cloudformation_dynamodb_export",
-    version="0.2.2",
+    version="0.2.3",
     author="tomoya55",
     author_email="hiranotomoya@gmail.com",
     description="Export DynamoDB definition in Cloudformation template files as json",

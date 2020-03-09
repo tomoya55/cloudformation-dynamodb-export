@@ -29,6 +29,7 @@ def export_tables(args):
         with open(file, "w") as fout:
             json.dump(table.properties(), fout, ensure_ascii=False,
                       indent=4, sort_keys=True, separators=(',', ': '))
+            fout.write("\n")
         print(f"Wrote {file}")
 
 
